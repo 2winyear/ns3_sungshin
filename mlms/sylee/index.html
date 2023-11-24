@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+    <title>Graph</title>
+    <script type="text/javascript">
+        window.onload = function() { 
+            var request;
+            if (window.XMLHttpRequest) {
+                request = new XMLHttpRequest;
+            } else {
+                request = new ActiveXObject('microsoft.XMLHTTP');
+            }
+
+            // Ajax 요청
+            request.open("GET","results.xml");
+            request.send();
+
+            // 준비상태가 바뀌면
+            request.onreadystatechange = function() {
+                if (request.status >= 300 || request.status < 200) {
+                    alert(request.status);
+                }
+                if (request.readyState == 4) {
+                    var xml = request.responseXML;
+                    var flows = xml.getElementsByTagName("Flow");
+
+                    alert(flows.length);
+                    var count = 1;
+                    for (var i = 0; i < flows.length; i++) {
+                        var curFlow = flows[i].children; //[packetsDropped, ... delayHistogram, jitterHistogram ...
+                        var elemName = "";
+                        var rowItem = "";
+                        for (var ii = 0; ii < curFlow.length; ii++) {
+                            if (curFlow[ii].tagName == "delayHistogram") {
+                                for (const attr of flows[i].attributes) {
+                                    elemName += `${attr.name}=${attr.value}\n`;
+                                }
+                                console.log(elemName);
+                                rowItem += `
+                                    <tr>
+                                        <td>${elemName}</td>
+                                        <td><img src="./${Math.floor(count++)}.jpg"></td>
+                                        <td><img src="./${Math.floor(count++)}.jpg"></td>
+                                    </tr>`;
+                                $('#flow_table').append(rowItem)
+                            }
+                        }
+                    }
+                    //요청하는게 xml이면 responseXML 일반텍스트면 response
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    <table id="flow_table">
+    </table>
+</body>
+</html>
