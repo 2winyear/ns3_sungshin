@@ -6,8 +6,7 @@ import os
 import xml.etree.ElementTree as ET
 from xml.etree.ElementTree import Element, dump, ElementTree
 import matplotlib.pyplot as plt 
-import numpy as np 
-from scipy.stats import norm
+import numpy as np
 
 delay_count = []
 jitter_count = []
