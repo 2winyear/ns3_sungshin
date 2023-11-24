@@ -1,0 +1,99 @@
+{
+  "simulationTime": 10.0,
+  "networks": [
+    {
+      "ssid": "network-1",
+      "standard": "802.11ax",
+      "wifiManager": "Ideal",
+      "AP": {
+        "location": [0.0, 10.0, 0.0],
+        "links": [
+            {
+              "band": "2.4Ghz",
+              "channel": 0,      
+              "Ipv4Address": "192.168.4.0",
+              "Ipv4Mask": "255.255.255.0"
+            },
+            {
+              "band": "5Ghz",
+              "channel": 0,      
+              "Ipv4Address": "192.168.5.0",
+              "Ipv4Mask": "255.255.255.0"
+            },
+            {
+              "band": "6Ghz",
+              "channel": 0,      
+              "Ipv4Address": "192.168.6.0",
+              "Ipv4Mask": "255.255.255.0"
+            }
+        ]
+      },
+      "AP_applications": [ {
+          "protocol": "UDP",
+          "band": "2.4Ghz",
+          "interval": 0.00001,
+          "randomInterval": false,
+          "packetSize": 1472,
+          "randomPacketSize": false,
+          "destType": "Sta",
+          "destIndex": 0,
+          "destPort": 10,
+          "AC": "VO"
+        }
+      ]
+    },
+    {
+      "ssid": "network-2",
+      "standard": "802.11ax",
+      "wifiManager": "Ideal",
+      "AP": {
+        "location": [10.0, 10.0, 0.0],
+        "links": [
+            {
+              "band": "2.4Ghz",
+              "channel": 0,      
+              "Ipv4Address": "192.168.7.0",
+              "Ipv4Mask": "255.255.255.0"
+            },
+            {
+              "band": "5Ghz",
+              "channel": 0,      
+              "Ipv4Address": "192.168.8.0",
+              "Ipv4Mask": "255.255.255.0"
+            },
+            {
+              "band": "6Ghz",
+              "channel": 0,      
+              "Ipv4Address": "192.168.9.0",
+              "Ipv4Mask": "255.255.255.0"
+            }
+        ]
+      },
+      "AP_applications": [ {
+          "protocol": "UDP",
+          "band": "2.4Ghz",
+          "interval": 0.00001,
+          "randomInterval": false,
+          "packetSize": 1472,
+          "randomPacketSize": false,
+          "destType": "Sta",
+          "destIndex": 0,
+          "destPort": 10,
+          "AC": "BK"
+        }
+      ]
+    }
+  ],
+  "stations": [
+    {
+      "ssid": "network-1",
+      "band": "2.4Ghz",      
+      "location": [0.0, 20.0, 0.0]  
+    },
+    {
+      "ssid": "network-2",
+      "band": "2.4Ghz",        
+      "location": [10.0, 20.0, 0.0]
+    }
+  ]
+}
